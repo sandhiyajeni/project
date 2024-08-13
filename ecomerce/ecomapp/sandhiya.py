@@ -4,3 +4,5 @@ a={'abc','bcd','aaa'}
 print(a)
 print(a)
 print(a)
+print(a)
+print(a)

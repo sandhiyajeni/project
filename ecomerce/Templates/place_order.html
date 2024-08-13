@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mt-3">
+    <div class="col-md-9">
+      {% for x in products %}
+            {% if forloop.counter == 1 %}
+         <h5 class="bg-danger text-white p-1">Customer Details</h5>
+         <table class="table table-borderless">
+                 <tr>
+                       <th>Customer Name</th>
+                       <td>{{x.uid.username}}</td>
+                 </tr>
+                <tr>
+                 <th>Email</th>
+                 <td>{{x.uid.email}}</td>
+              </tr>
+
+             </table>
+             {% endif %}
+             {% endfor %}
+       
+         <h5 class="bg-danger text-white p-1">Cart Details</h5>
+         {% for y in products %}
+         <div class="row">
+                  <div class="col-md-3">
+                     <img src="{{y.pid.pimage.url}}" width="100%" alt="">
+                  </div>
+
+                  <div class="col-md-9">
+                     <table class="table table-borderless">
+                       <tr>
+                            <th>Product Name</th>
+                            <td>{{y.pid.name}}</td>
+                       </tr>
+                       <tr>
+                         <th>Price</th>
+                         <td>{{y.pid.price}}</td>
+                       </tr>
+                       <tr>
+                         <th>Product Category</th>
+                         <td>
+                              {% if y.pid.cat == 1 %}
+                              <p class="card-text">cloths</p> 
+                              {% elif y.pid.cat == 2%}
+                              <p class="card-text">shoes</p>
+                              {% else %}
+                              <p class="card-text">mobile</p>
+                               {% endif %}
+                         </td>
+                       </tr>
+                       <tr>
+                         <th>Quantity</th>
+                         <td>
+                               <a href="/qty/0/{{y.pid.id}}"><button class="btn btn-danger">-</button></a>
+                               <input type="text" value="{{y.qty}}">
+                               <a href="/qty/1/{{y.pid.id}}"><button class="btn btn-success">+</button></a>
+                         </td>
+                       </tr>
+                       <tr>
+                            <td><a href="/remove/{{y.id}}"><button class="btn btn-danger">Remove</button></a></td>
+                       </tr>
+                     </table>
+                  </div>
+         </div>
+         {% endfor %}
+    </div>
+
+    <div class="col-md-3">
+     <h5 class="bg-danger text-white p-1">Cart Total</h5>
+     <table class="table table-borderless">
+           <tr>
+                <th>Total Items</th>
+                <td>{{items}}</td>
+           </tr>
+           <tr>
+                 <th>Total Amount</th>
+                 <td>Rs.{{total}}</td>
+           </tr>
+           <tr>
+                 <td><a href="/mk"><button class="btn btn-danger">Make payment</button></a></td>
+           </tr>
+
+     </table>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+forms-----views----db
+
+Test case:Submitting blank input
+Conclusion:There is no validation for blank given by user
+
+Assert----it check the condition
+
+Assert----true---
+----false---it will raise Assertion Error
+
